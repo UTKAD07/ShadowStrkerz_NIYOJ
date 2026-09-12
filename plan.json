@@ -1,0 +1,43 @@
+{
+  "granularity": "weekly",
+  "generated_at": "2026-09-12T18:47:08Z",
+  "plan": [
+    {
+      "task_id": "T004",
+      "corridor": "STN03-STN04",
+      "department": "Track",
+      "date": "2026-09-18",
+      "assigned_start": "01:00",
+      "assigned_end": "02:30",
+      "window_id": "W001",
+      "priority_score": 0.2,
+      "status": "scheduled"
+    }
+  ],
+  "unscheduled": [
+    {
+      "task_id": "T005",
+      "corridor": "STN02-STN03",
+      "department": "Power",
+      "reason": "no compatible window"
+    },
+    {
+      "task_id": "T002",
+      "corridor": "STN04-STN05",
+      "department": "Track",
+      "reason": "no compatible window"
+    },
+    {
+      "task_id": "T003",
+      "corridor": "STN02-STN03",
+      "department": "Signal",
+      "reason": "no compatible window"
+    },
+    {
+      "task_id": "T001",
+      "corridor": "STN01-STN02",
+      "department": "Track",
+      "reason": "no compatible window"
+    }
+  ]
+}
