@@ -1,0 +1,11 @@
+/.vscode
+
+# Frontend stuff
+/frontend/dist
+
+/frontend/.vscode
+/frontend/node_modules
+
+/frontend/.agent
+/frontend/.gemini
+/frontend/.impeccable
