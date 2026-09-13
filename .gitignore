@@ -9,3 +9,8 @@
 /frontend/.agent
 /frontend/.gemini
 /frontend/.impeccable
+
+# Backend stuff
+/Backend/venv/
+/Backend/__pycache__/
+/Backend/*.pyc
