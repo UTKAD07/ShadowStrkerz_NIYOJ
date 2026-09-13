@@ -1,0 +1,14 @@
+task_id,corridor,department,description,urgency,overdue_days,estimated_hours,km_marker,speed_restriction_kmph,reported_by,external_ref,safety_notes
+T001,STN08-STN09,Track,"Hairline rail crack on UP main, longitudinal micro-fissure at fishplate interface (USFD ultrasonic detection)",5,1,2.25,42.14,30,Section Officer R.K. Meena,TMS-2024-8841-B,Caution order issued to all UP trains between STN08 and STN09; track circuit bonding verified intact by Section S&T; work gang #4 on standby with portable welding
+T002,STN04-STN05,Track,"Ballast fouling near culvert, drainage partially blocked",3,5,3,,,,,
+T003,STN02-STN03,Signal,Points machine intermittent fault at crossover,4,2,1.5,,,,,
+T004,STN03-STN04,Power,"OHE insulator flashover mark, needs inspection",2,8,2,,,,,
+T005,STN02-STN03,Power,Feeder cable insulation wear beyond threshold,3,14,4,,,,,
+T006,STN10-STN11,Signal,Axle counter reset failure reported by loco pilot,5,0,1,,,,,Section controller advised single-line working until cleared
+T007,STN01-STN02,Track,"Rail joint fishplate bolts loose, 3 joints affected",2,3,1,,,,,
+T008,STN04-STN05,Signal,Level crossing gate interlocking delay on closure,3,6,2.5,,,,,
+T009,STN03-STN04,Track,"Sleeper cracking on curve, 6 sleepers affected",4,10,3.5,,,,,
+T010,STN08-STN09,Power,Overhead wire sag beyond tolerance near mast 214,3,4,2,,,,,
+T011,STN01-STN02,Signal,Cable duct water ingress near relay room,2,20,1.5,,,,,
+T012,STN10-STN11,Track,"Formation settlement, minor dip in track geometry",5,0,3,45.6,20,Track Inspector P. Nair,TMS-2024-9012-A,Speed restriction imposed both directions; patrolling doubled at this location; gang deployed for tamping
+T013,STN02-STN03,Track,Weed growth affecting track-side visibility for patrolling staff,1,15,1,,,,,

@@ -1,0 +1,8 @@
+task_id,corridor,department,date,assigned_start,assigned_end,window_id,priority_score,status
+T005,STN02-STN03,Power,2026-09-14,00:00,04:00,W002,0.72,scheduled
+T003,STN02-STN03,Signal,2026-09-15,00:00,01:30,W006,0.62,scheduled
+T011,STN01-STN02,Signal,2026-09-14,00:00,01:30,W001,0.58,scheduled
+T010,STN08-STN09,Power,2026-09-16,21:00,23:00,W005,0.54,scheduled
+T004,STN03-STN04,Power,2026-09-15,01:00,03:00,W003,0.52,scheduled
+T013,STN02-STN03,Track,2026-09-15,01:30,02:30,W006,0.44,scheduled
+T007,STN01-STN02,Track,2026-09-14,01:30,02:30,W001,0.37,scheduled

@@ -1,0 +1,132 @@
+{
+  "granularity": "weekly",
+  "generated_at": "2026-09-13T02:19:51Z",
+  "plan": [
+    {
+      "task_id": "T005",
+      "corridor": "STN02-STN03",
+      "department": "Power",
+      "date": "2026-09-14",
+      "assigned_start": "00:00",
+      "assigned_end": "04:00",
+      "window_id": "W002",
+      "priority_score": 0.72,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T003",
+      "corridor": "STN02-STN03",
+      "department": "Signal",
+      "date": "2026-09-15",
+      "assigned_start": "00:00",
+      "assigned_end": "01:30",
+      "window_id": "W006",
+      "priority_score": 0.62,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T011",
+      "corridor": "STN01-STN02",
+      "department": "Signal",
+      "date": "2026-09-14",
+      "assigned_start": "00:00",
+      "assigned_end": "01:30",
+      "window_id": "W001",
+      "priority_score": 0.58,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T010",
+      "corridor": "STN08-STN09",
+      "department": "Power",
+      "date": "2026-09-16",
+      "assigned_start": "21:00",
+      "assigned_end": "23:00",
+      "window_id": "W005",
+      "priority_score": 0.54,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T004",
+      "corridor": "STN03-STN04",
+      "department": "Power",
+      "date": "2026-09-15",
+      "assigned_start": "01:00",
+      "assigned_end": "03:00",
+      "window_id": "W003",
+      "priority_score": 0.52,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T013",
+      "corridor": "STN02-STN03",
+      "department": "Track",
+      "date": "2026-09-15",
+      "assigned_start": "01:30",
+      "assigned_end": "02:30",
+      "window_id": "W006",
+      "priority_score": 0.44,
+      "status": "scheduled"
+    },
+    {
+      "task_id": "T007",
+      "corridor": "STN01-STN02",
+      "department": "Track",
+      "date": "2026-09-14",
+      "assigned_start": "01:30",
+      "assigned_end": "02:30",
+      "window_id": "W001",
+      "priority_score": 0.37,
+      "status": "scheduled"
+    }
+  ],
+  "unscheduled": [
+    {
+      "task_id": "T009",
+      "corridor": "STN03-STN04",
+      "department": "Track",
+      "reason": "no compatible window"
+    },
+    {
+      "task_id": "T001",
+      "corridor": "STN08-STN09",
+      "department": "Track",
+      "reason": "no compatible window",
+      "km_marker": 42.14,
+      "speed_restriction_kmph": 30,
+      "reported_by": "Section Officer R.K. Meena",
+      "external_ref": "TMS-2024-8841-B",
+      "safety_notes": "Caution order issued to all UP trains between STN08 and STN09; track circuit bonding verified intact by Section S&T; work gang #4 on standby with portable welding"
+    },
+    {
+      "task_id": "T006",
+      "corridor": "STN10-STN11",
+      "department": "Signal",
+      "reason": "no compatible window",
+      "safety_notes": "Section controller advised single-line working until cleared"
+    },
+    {
+      "task_id": "T012",
+      "corridor": "STN10-STN11",
+      "department": "Track",
+      "reason": "no compatible window",
+      "km_marker": 45.6,
+      "speed_restriction_kmph": 20,
+      "reported_by": "Track Inspector P. Nair",
+      "external_ref": "TMS-2024-9012-A",
+      "safety_notes": "Speed restriction imposed both directions; patrolling doubled at this location; gang deployed for tamping"
+    },
+    {
+      "task_id": "T008",
+      "corridor": "STN04-STN05",
+      "department": "Signal",
+      "reason": "no compatible window"
+    },
+    {
+      "task_id": "T002",
+      "corridor": "STN04-STN05",
+      "department": "Track",
+      "reason": "no compatible window"
+    }
+  ]
+}
