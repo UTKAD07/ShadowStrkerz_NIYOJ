@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginController } from '../api';
 
 export default function Login() {
   const navigate = useNavigate();
-  const [controllerId, setControllerId] = useState('IR-CTRL-A-SHARMA-08');
+  const [controllerId, setControllerId] = useState('CTRL01');
   const [clock, setClock] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const updateTime = () => {
@@ -19,10 +22,20 @@ export default function Login() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/command-centre');
+    setError('');
+    setLoading(true);
+    try {
+      await loginController(controllerId);
+      navigate('/command-centre');
+    } catch {
+      setError('Controller ID not found. Please check your credentials.');
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   return (
     <div className="bg-[#F8FAFC] text-slate-800 font-sans min-h-screen flex flex-col justify-between selection:bg-[#EA580C] selection:text-white relative overflow-hidden">
@@ -111,7 +124,7 @@ export default function Login() {
                 </div>
               </div>
               <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                <span>Jurisdiction: Section STN01–STN25</span>
+                <span>Jurisdiction: Section STN01–STN14</span>
                 <span className="text-emerald-700 font-medium flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> SmartCard Ready
                 </span>
@@ -137,15 +150,26 @@ export default function Login() {
               </div>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 font-mono text-xs px-3 py-2 rounded-lg flex items-center gap-2">
+                <span className="material-symbols-outlined text-[15px]">error</span>
+                {error}
+              </div>
+            )}
+
             {/* Log in Button */}
             <button
-              className="w-full bg-[#EA580C] hover:bg-[#C2410C] text-white font-semibold py-3 px-4 rounded-lg transition-all flex items-center justify-center space-x-2 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 text-sm tracking-wide group cursor-pointer"
+              disabled={loading}
+              className="w-full bg-[#EA580C] hover:bg-[#C2410C] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-all flex items-center justify-center space-x-2 shadow-md shadow-orange-500/20 hover:shadow-lg hover:shadow-orange-500/30 text-sm tracking-wide group cursor-pointer"
               type="submit"
             >
-              <span>LOG IN TO DISPATCH CONSOLE</span>
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
-              </svg>
+              <span>{loading ? 'AUTHENTICATING...' : 'LOG IN TO DISPATCH CONSOLE'}</span>
+              {!loading && (
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path>
+                </svg>
+              )}
             </button>
           </form>
 

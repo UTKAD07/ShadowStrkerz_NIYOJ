@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchStations, fetchTrains, fetchWindows } from '../api';
 
 export default function ControlChart() {
-  // Define full list of stations (can be extended via controllers.csv in future)
-  const stations = [
+  const [chartMode, setChartMode] = useState('time'); // 'time' | 'corridor'
+  const [showConflictPanel, setShowConflictPanel] = useState(true);
+  const [stations, setStations] = useState([
     { id: 'STN01', name: 'DEVGARH', km: '0.0' },
     { id: 'STN02', name: 'SITAPUR', km: '8.2' },
     { id: 'STN03', name: 'RAMPUR', km: '16.5' },
@@ -14,10 +16,31 @@ export default function ControlChart() {
     { id: 'STN08', name: 'SAHIBABAD', km: '57.2' },
     { id: 'STN09', name: 'ALIGARH', km: '66.4' },
     { id: 'STN10', name: 'HATHRAS', km: '74.8' },
-    // Add more stations up to STN25 as needed
-  ];
-  const [chartMode, setChartMode] = useState('time'); // 'time' | 'corridor'
-  const [showConflictPanel, setShowConflictPanel] = useState(true);
+  ]);
+  const [trains, setTrains] = useState([]);
+  const [windows, setWindows] = useState([]);
+
+  useEffect(() => {
+    fetchStations()
+      .then((data) =>
+        setStations(
+          data.map((s) => ({
+            id: s.station_id ?? s.id,
+            name: (s.name ?? s.station_name ?? '').toUpperCase(),
+            km: String(s.km ?? s.distance_km ?? ''),
+          }))
+        )
+      )
+      .catch(() => {/* keep static fallback */});
+
+    fetchTrains()
+      .then(setTrains)
+      .catch(() => {/* keep empty */});
+
+    fetchWindows()
+      .then(setWindows)
+      .catch(() => {/* keep empty */});
+  }, []);
 
   return (
     <main className="max-w-[1720px] mx-auto w-full px-4 lg:px-8 py-4 flex flex-col gap-4 flex-1">

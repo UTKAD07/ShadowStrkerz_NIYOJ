@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchPlan } from '../api';
 
 export default function WeeklyPlanner() {
   const [tabMode, setTabMode] = useState('weekly'); // 'weekly' | 'monthly'
   const [selectedBlock, setSelectedBlock] = useState(null);
+  const [planData, setPlanData] = useState(null);
+  const [planError, setPlanError] = useState(null);
+
+  useEffect(() => {
+    fetchPlan(tabMode)
+      .then((data) => setPlanData({ ...data, total_scheduled: (data.plan ?? data.scheduled_blocks ?? []).length }))
+      .catch(() => setPlanError('Backend offline – showing cached data'));
+  }, [tabMode]);
 
   const blockEvents = [
     {
@@ -79,6 +88,19 @@ export default function WeeklyPlanner() {
 
   return (
     <main className="max-w-[1720px] mx-auto w-full px-4 lg:px-8 py-4 flex flex-col gap-4 flex-1">
+      {/* Backend Connection Status */}
+      {planError && (
+        <div className="w-full bg-amber-50 border border-amber-200 text-amber-800 font-mono text-[11px] px-3 py-1.5 rounded-lg flex items-center gap-2">
+          <span className="material-symbols-outlined text-[14px]">wifi_off</span>
+          {planError}
+        </div>
+      )}
+      {planData && !planError && (
+        <div className="w-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-mono text-[11px] px-3 py-1.5 rounded-lg flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          LIVE DATA — Backend connected · {planData.total_scheduled ?? 0} blocks scheduled this {tabMode === 'weekly' ? 'week' : 'month'}
+        </div>
+      )}
       {/* Top Planner Controls */}
       <div className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 shadow-xs">
         <div className="flex items-center gap-2">

@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { LIVE_TRAINS } from '../data/mockData';
+import { fetchWindows, fetchTrains } from '../api';
 
 export default function CommandCentre() {
   const [grantedBlocks, setGrantedBlocks] = useState({});
   const [activeAlert, setActiveAlert] = useState(null);
+  const [liveWindows, setLiveWindows] = useState([]);
+  const [liveTrains, setLiveTrains] = useState([]);
+
+  useEffect(() => {
+    fetchWindows().then(setLiveWindows).catch(() => {});
+    fetchTrains().then(setLiveTrains).catch(() => {});
+  }, []);
 
   const handleGrantBlock = (id, title) => {
     setGrantedBlocks((prev) => ({ ...prev, [id]: true }));
@@ -161,7 +169,7 @@ export default function CommandCentre() {
             <span className="material-symbols-outlined text-emerald-600 text-[18px]">event_available</span>
           </div>
           <div className="flex items-baseline justify-between">
-            <span className="font-heading font-black text-2xl text-emerald-700">05</span>
+            <span className="font-heading font-black text-2xl text-emerald-700">{liveWindows.length > 0 ? String(liveWindows.length).padStart(2, '0') : '05'}</span>
             <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono text-[10px] font-bold rounded-md">
               windows.csv
             </span>

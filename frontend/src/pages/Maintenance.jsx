@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { DEFECTS, STATIONS } from '../data/mockData';
 import { Link } from 'react-router-dom';
+import { fetchPlan } from '../api';
 
 export default function Maintenance() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -12,6 +13,36 @@ export default function Maintenance() {
   const [showNewModal, setShowNewModal] = useState(false);
   const [defectsList, setDefectsList] = useState(DEFECTS);
   const [toast, setToast] = useState(null);
+
+  // Hydrate with backend plan data - merge real scheduled defects into the list
+  useEffect(() => {
+    fetchPlan('weekly')
+      .then((plan) => {
+        const blocks = plan?.plan ?? plan?.scheduled_blocks ?? [];
+        if (!blocks.length) return;
+        const backendDefects = blocks.map((blk, idx) => ({
+          taskId: blk.task_id ?? `API-${idx + 1}`,
+          corridor: blk.corridor ?? blk.block_section ?? '',
+          corridorName: blk.corridor_name ?? blk.corridor ?? '',
+          department: blk.department ?? blk.dept ?? 'Track',
+          title: blk.description ?? blk.title ?? blk.task_type ?? 'Scheduled Maintenance',
+          description: blk.notes ?? '',
+          urgency: blk.urgency ?? blk.priority ?? 3,
+          overdueDays: blk.overdue_days ?? 0,
+          estimatedHours: blk.estimated_hours ?? blk.duration_hours ?? 1.5,
+          status: 'Scheduled',
+          linesAffected: blk.line ?? 'UP-MAIN',
+          speedRestriction: blk.speed_restriction ? `${blk.speed_restriction} KM/H` : 'NONE',
+          recommendedWindow: blk.assigned_start ? `${blk.assigned_start}–${blk.assigned_end} (${blk.date})` : '',
+        }));
+        setDefectsList((prev) => {
+          const ids = new Set(backendDefects.map((d) => d.taskId));
+          return [...backendDefects, ...prev.filter((d) => !ids.has(d.taskId))];
+        });
+      })
+      .catch(() => {/* keep DEFECTS fallback */});
+  }, []);
+
 
   const [newDefect, setNewDefect] = useState({
     taskId: `T00${defectsList.length + 1}`,
