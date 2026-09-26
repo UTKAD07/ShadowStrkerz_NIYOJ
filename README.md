@@ -1,4 +1,4 @@
-# SCHEMA.md — SIH26027 shared data contract
+# README(SCHEMA).md — SIH26027 shared data contract
 
 This is the one file everyone treats as ground truth. If a column needs to change, message the group before you change it — don't let it drift silently.
 
