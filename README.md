@@ -1,3 +1,5 @@
+<img width="2061" height="404" alt="NIYOJ Logo" src="https://github.com/user-attachments/assets/88266ac2-e60f-498b-ab40-253698bc16b1" />
+
 # NIYOJ
 
 ### The decision layer beneath every block.
@@ -16,7 +18,7 @@ Engineering, Signal & Telecommunication, and Traction Distribution teams need ac
 
 A useful planning system must do more than fill empty slots. It should help controllers understand maintenance urgency, available capacity, departmental compatibility, and the operational consequences of a decision.
 
-## Our approach
+## 🎯 Our approach
 
 NIYOJ is designed around four stages:
 
@@ -27,7 +29,7 @@ NIYOJ is designed around four stages:
 
 The intended deployment is a decision-support panel within an existing controller workflow, with COA integration as a future integration target. The prototype does not establish a live connection to COA or other railway systems.
 
-## Prototype foundation
+## 🧩 Prototype foundation
 
 The prototype is based on a deliberately small, shared data contract:
 
@@ -46,7 +48,7 @@ The baseline scope is **one control board, one route of approximately 100–200 
 
 These are the prototype's documented interfaces, not a claim that every feature in the NIYOJ blueprint has been implemented or validated. The repository code and runnable demonstration establish implementation status.
 
-## What NIYOJ adds to the plan
+## 🚀 What NIYOJ adds to the plan
 
 The following are **planned extensions**, to be treated as implemented only when their code, data, and demonstration are available:
 
@@ -70,13 +72,13 @@ The intended flow is to open a pending request, inspect its priority and explana
 
 A recommendation and a slot marked `scheduled` are planning outputs. They do not constitute operational permission to take a block. Actual sanction, isolation, and railway authorisation remain outside the prototype.
 
-## Architecture and compatibility
+## ⚙️ Architecture and compatibility
 
 The baseline keeps CSV inputs, Python scheduling, a JSON API, and the React interface. The NIYOJ target architecture proposes FastAPI, SQLite, scikit-learn, OR-Tools, and short-interval polling. These are design targets, not requirements to rewrite the existing backend before extending the prototype.
 
 **Existing column names, department values, and the `/plan` envelope remain stable.** Proposed NIYOJ metadata is defined separately in [SCHEMA.md](SCHEMA.md), allowing the current prototype to continue using its original inputs.
 
-## How to evaluate the demonstration
+## 🔍 How to evaluate the demonstration
 
 Trace a task from `defects.csv` to its matching window and its `/plan` result. Check that its assigned duration fits the task, that the assignment stays within the window, and that unscheduled work includes a reason. Use the control chart to inspect the result.
 
